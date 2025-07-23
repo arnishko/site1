@@ -502,7 +502,3 @@ const onDiscussedFilterClick = _.throttle(() => {
 defaultFilterButton.addEventListener('click', onDefaultFilterClick);
 randomFilterButton.addEventListener('click', onRandomFilterClick);
 discussedFilterButton.addEventListener('click', onDiscussedFilterClick);
-
-
-
-//показ 5 комментариев в полноэкранном режиме
