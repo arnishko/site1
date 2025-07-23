@@ -140,7 +140,6 @@ const fullscreen = document.querySelector('.big-picture');
 const fullscreenOff = fullscreen.querySelector('.big-picture__cancel');
 const fullscreenImg = fullscreen.querySelector('.big-picture__img img');
 const fullscreenLikes = fullscreen.querySelector('.likes-count');
-const fullscreenCommentsAmount = fullscreen.querySelector('.comments-count');
 const fullscreenDescription = fullscreen.querySelector('.social__caption');
 const fullscreenCommentsCount = fullscreen.querySelector('.social__comment-count');
 
@@ -185,9 +184,8 @@ pictures.addEventListener('click', (evt) => {
   fullscreenImg.src = photo.url;
   fullscreenImg.alt = photo.description;
   fullscreenLikes.textContent = photo.likes;
-  fullscreenCommentsAmount.textContent = photo.comments.length;
   fullscreenDescription.textContent = photo.description;
-  fullscreenCommentsCount.textContent = `${photo.comments.length} из ${photo.comments.length} комментариев`;
+
 
   fullscreenComments.innerHTML = ''; // очищаем
   renderComments(photo.comments);    // <-- передаём comments
@@ -211,7 +209,8 @@ pictures.addEventListener('click', (evt) => {
       allComments[i].classList.remove('hidden');
     }
 
-    visibleCount = nextCount;
+    visibleCount = Math.min(nextCount, allComments.length);
+    fullscreenCommentsCount.textContent = `Показаны ${visibleCount} из ${photo.comments.length} комментариев`;
 
     // Если все комментарии показаны — скрываем кнопку
     if (visibleCount >= allComments.length) {
